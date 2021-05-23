@@ -1,0 +1,67 @@
+<div>
+    <div class="user-managment-container">
+      <mat-card class="card details-card">
+        <mat-card-title>
+          <div class="header row">
+            <div class="col-lg-3-col-12">
+              <button (click)="editUser(-1)" class="new-user-button" mat-raised-button color="primary">Додати
+                користувача</button>
+            </div>
+            <div class="col-lg-3-col-12">
+              <span>
+                Керування користувачами
+              </span>
+            </div>
+          </div>
+        </mat-card-title>
+  
+        <table class="table" mat-table [dataSource]="dataSource"
+          class="mat-elevation-z8" matSort>
+  
+          <ng-container matColumnDef="userId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="userId">№</th>
+            <td mat-cell *matCellDef="let userViewModel">
+              {{userViewModel.userId}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="userName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="userName">UserName</th>
+            <td mat-cell *matCellDef="let userViewModel">
+              {{userViewModel.userName }} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="name">Ім'я</th>
+            <td mat-cell *matCellDef="let userViewModel">
+              {{userViewModel.name }} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="surname">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="surname">Прізвище</th>
+            <td mat-cell *matCellDef="let userViewModel">
+              {{userViewModel.surname }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="group">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="group">Група</th>
+            <td mat-cell *matCellDef="let userViewModel">
+              {{userViewModel.group.groupName }} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef>Редагувати</th>
+            <td mat-cell *matCellDef="let userViewModel">
+              <button (click)="editUser(userViewModel.userId)" class="details-button" mat-raised-button
+                color="primary">Перейти</button>
+            </td>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+  
+        </table>
+      </mat-card>
+    </div>
+  </div>
+  

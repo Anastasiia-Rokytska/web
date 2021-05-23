@@ -1,0 +1,57 @@
+<div class="edit-user-container row" *ngIf="editedUserModel">
+    <form [formGroup]="editUserFormGroup" (ngSubmit)="updateUser()" *ngIf="editUserFormGroup">
+        <mat-card class="card general-card col-general">
+            <mat-card-title class="title">
+                <mat-form-field class="input">
+                    <input matInput placeholder="Користувач"
+                        [(ngModel)]="edit_name_surName" formControlName="name_surname"
+                        (change)="changeName_surName()">
+                </mat-form-field>
+            </mat-card-title>
+            <mat-card-content>
+                <p class="work-place-row">
+                    Ім'я користувача : <mat-form-field class="input">
+                        <input matInput  formControlName="userName"
+                            value="{{editedUserModel.username}}">
+                    </mat-form-field> <br>
+                </p>
+                <p class="work-place-row">
+                    Пароль : <mat-form-field class="input">
+                        <input matInput formControlName="password"
+                            value="{{editedUserModel.password}}">
+                    </mat-form-field> <br>
+                </p>
+                <p class="work-place-row">
+                    Код доступу : <mat-form-field class="input">
+                        <input matInput formControlName="accessToken"
+                            value="{{editedUserModel.accessToken}}">
+                    </mat-form-field> <br>
+                </p>
+                <p class="work-place-row">
+                    Ролі : <mat-form-field appearance="legacy">
+                        <mat-label>Ролі</mat-label>
+                        <mat-select formControlName="roles" [(ngModel)]='selectedRoles' multiple>
+                            <mat-option *ngFor="let role of roles" [value]="role.name">{{role.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </p>
+                <p class="work-place-row">
+                    Групи : <mat-form-field appearance="legacy">
+                        <mat-label>Групи</mat-label>
+                        <mat-select formControlName="group" [(ngModel)]='selectedGroup'>
+                            <mat-option *ngFor="let group of groups" [value]="group.groupName">{{group.groupName}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </p>
+                <div class="buttons row">
+                    <div class="col-5">
+                        <button mat-raised-button color="primary" type="submit" [disabled]="editUserFormGroup.invalid">{{userModelId !== -1 ? 'Оновити' : 'Додати'}}</button>
+                    </div>
+                    <div class="col-5">
+                        <button mat-raised-button color="warn" type="button" (click)="cancel()">Скасувати</button>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </form>
+</div>

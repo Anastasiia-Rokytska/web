@@ -1,0 +1,29 @@
+<div class="wrapper">
+  <div *ngIf="this.isLoggedIn();else UnloggedUser" class="sticky">
+    <mat-toolbar class="tool-bar">
+      <a id="userName">{{user.userName}}</a>
+      <button class="menuItem" routerLink="/user-management" routerLinkActive="active">Керування
+        користувачами</button>
+        <button class="menuItem" routerLink="/group-management" *ngIf="isAdmin" routerLinkActive="active">Керування
+          групами</button>
+      <button class="menuItem" (click)="logout()">Вийти</button>
+    </mat-toolbar>
+  </div>
+
+  <ng-template #UnloggedUser>
+    <mat-toolbar class="tool-bar">
+      <button [matMenuTriggerFor]="unlogedMenu" mat-icon-button class="example-icon"
+        aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <a>TSUKATTest app</a>
+      <span class="example-spacer"></span>
+      <mat-menu #unlogedMenu="matMenu">
+        <button routerLink="/login" routerLinkActive="active" mat-menu-item>Вхід</button>
+      </mat-menu>
+    </mat-toolbar>
+  </ng-template>
+
+</div>
+
+<router-outlet></router-outlet>
